@@ -1,40 +1,42 @@
-import { useState, useEffect } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-
 import "@reach/combobox/styles.css";
-import PlacesAutocomplete from "./PlacesAutoComplete";
 import "./styles.css";
 
-type PlacesProps = {
-  zoom: number;
-  latitude: number;
-  longitude: number;
-};
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import {
+  SelectedProps,
+  locationProps,
+} from "interfaces/components/map.interface";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
-type SelectedProps = {
-  lat: number;
-  lng: number;
-};
+import { PlacesAutocomplete } from "components/placesAutoComplete";
 
-export default function Places({ zoom, latitude, longitude }: PlacesProps) {
+export function Places() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_API_KEY || "",
+    googleMapsApiKey: process.env.REACT_APP_API_KEY_MAPS || "",
     libraries: ["places"],
   });
 
   if (!isLoaded) return <div>Loading...</div>;
-  return <Map zoom={zoom} latitude={latitude} longitude={longitude} />;
+  return <Map />;
 }
 
-function Map({ zoom, latitude, longitude }: PlacesProps) {
-  useEffect(() => {
-    setSelected({
-      lat: latitude,
-      lng: longitude,
-    });
-  }, [latitude, longitude]);
+function Map() {
+  let location = useLocation();
+  const { state } = location as locationProps;
 
   const [selected, setSelected] = useState<SelectedProps>();
+
+  useEffect(() => {
+    if (state !== null) {
+      setTimeout(() => {
+        setSelected({
+          lat: state.lat,
+          lng: state.lng,
+        });
+      }, 500);
+    }
+  }, [state]);
 
   return (
     <div className="wrapper-map">
@@ -43,7 +45,7 @@ function Map({ zoom, latitude, longitude }: PlacesProps) {
       </div>
 
       <GoogleMap
-        zoom={zoom}
+        zoom={12}
         center={selected}
         mapContainerClassName="map-container"
       >

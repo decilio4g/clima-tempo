@@ -1,0 +1,30 @@
+.place-container {
+  z-index: 10;
+  text-align: end;
+  margin-right: 50px;
+}
+
+.place-container .time-zone {
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.place-container .time-zone span {
+  font-family: "Poppins", sans-serif;
+}
+
+.place-container .country {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 730px) {
+  .place-container {
+    text-align: end;
+    margin-top: 15px;
+  }
+
+  .place-container .time-zone {
+    font-size: 20px;
+  }
+}

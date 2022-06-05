@@ -1,29 +1,13 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import Mapa from "./components/map";
-import Climate from "./components/climate";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App() {
-  const [coords, setCoords] = useState({
-    latitude: 0,
-    longitude: 0,
-  });
+import { Home } from "pages/home";
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setCoords({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
-  }, []);
-
+export function App() {
   return (
-    <div className="App">
-      <Climate />
-      <Mapa zoom={12} latitude={coords.latitude} longitude={coords.longitude} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
