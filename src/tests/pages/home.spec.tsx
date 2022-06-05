@@ -5,6 +5,11 @@ import { Home } from "pages/home";
 
 jest.mock("react-router-dom", () => {
   return {
+    useLocation() {
+      return {
+        location: "/",
+      };
+    },
     useNavigate() {
       return {
         navigate: "/",
@@ -13,8 +18,8 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-describe("Map Component", () => {
-  it("loading map", () => {
+describe("Home Component", () => {
+  it("Get first child", () => {
     const { container } = render(<Home />);
 
     expect(container.firstChild).toHaveClass("App");

@@ -45,7 +45,7 @@ export const PlacesAutocomplete = ({ setSelected }: any) => {
   };
 
   return (
-    <Combobox onSelect={handleSelect}>
+    <Combobox className="container-input-combobox" onSelect={handleSelect}>
       <ComboboxInput
         value={value}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
