@@ -52,7 +52,7 @@
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="ClimaTempo" title="#ClimaTempo" src="Clima-tempo-frontend.jpg" width="400px">
+  <img alt="ClimaTempo" title="#ClimaTempo" src="Clima-tempo-frontend.png" width="400px">
 
 </p>
 
